@@ -19,7 +19,7 @@ public class RegistrationPage extends BasePage {
 
 
     public void visit(){
-        driver.get(Url.concat("/mercuryregister.php"));
+        driver.get(System.getenv("APP_ENDPOINT") + "/mercuryregister.php");
         driver.manage().window().maximize();
     }
 

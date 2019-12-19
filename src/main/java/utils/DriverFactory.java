@@ -1,15 +1,18 @@
 package utils;
 
+import com.thoughtworks.gauge.AfterScenario;
+import com.thoughtworks.gauge.AfterSpec;
 import com.thoughtworks.gauge.AfterSuite;
+import com.thoughtworks.gauge.BeforeScenario;
+import com.thoughtworks.gauge.BeforeSpec;
 import com.thoughtworks.gauge.BeforeSuite;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
     private static final String FIREFOX = "firefox";
@@ -23,36 +26,43 @@ public class DriverFactory {
 
     @BeforeSuite
     public void Setup() {
-        String browser = System.getenv("BROWSER");
+        //String browser = System.getenv("BROWSER");
 
         // Uses chrome driver by default
-        if (browser == null) {
-            ChromeDriverManager.getInstance().setup();
-            driver = new ChromeDriver();
-        }
+        //if (browser == null) {
+            //ystem.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+ "\\chromedriver.exe");
+             driver=new ChromeDriver();
+             //driver=new ChromeDriver();
 
-        switch (browser)
-        {
-            case "IE":
-                InternetExplorerDriverManager.getInstance().setup();
-                driver = new InternetExplorerDriver();
-            case "FIREFOX":
-                FirefoxDriverManager.getInstance().setup();
-                driver = new FirefoxDriver();
-            default:
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setBinary("/usr/bin/google-chrome-stable");
-                chromeOptions.addArguments("--headless");
+            //WebDriverManager.chromedriver().setup();
+            //driver = new ChromeDriver();
+        //}
+
+        // switch (browser)
+        // {
+        //     case "IE":
+        //         WebDriverManager.iedriver().setup();
+        //         driver = new InternetExplorerDriver();
+        //     case "FIREFOX":
+        //         WebDriverManager.firefoxdriver().setup();
+        //         driver = new FirefoxDriver();
+        //     default:
+        //     //   ChromeOptions chromeOptions = new ChromeOptions();
+        //     // chromeOptions.setBinary("/usr/bin/google-chrome-stable");
+        //     // chromeOptions.addArguments("--headless");
                 
-                ChromeDriverManager.getInstance().setup();
-                driver = new ChromeDriver(chromeOptions);
+        //     //WebDriverManager.chromedriver().setup();
+        //     //driver = new ChromeDriver();
 
-        }
+        // }
     }
 
-    @AfterSuite
+   // @AfterSuite
     public void TearDown() {
         driver.close();
         driver.quit();
+
+
+
     }
 }

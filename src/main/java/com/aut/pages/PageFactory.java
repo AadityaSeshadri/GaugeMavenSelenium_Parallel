@@ -1,5 +1,7 @@
 package com.aut.pages;
 
+import com.thoughtworks.gauge.BeforeScenario;
+import com.thoughtworks.gauge.BeforeSpec;
 import com.thoughtworks.gauge.BeforeSuite;
 import org.openqa.selenium.WebDriver;
 import utils.DriverFactory;
@@ -13,7 +15,7 @@ public class PageFactory extends org.openqa.selenium.support.PageFactory {
     public static RegistrationPage registrationPage;
     public static CreateAccountSuccessPage createAccountSuccessPage;
 
-    @BeforeSuite
+    @BeforeSpec
     public void init(){
         driver          = DriverFactory.getDriver();
 

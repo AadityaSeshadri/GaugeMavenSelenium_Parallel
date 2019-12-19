@@ -8,13 +8,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.DriverFactory;
+
 public abstract class BasePage {
     protected static String Url = System.getenv("APP_ENDPOINT");
     public final WebDriver driver;
 
     public BasePage(){
-        //this.driver = DriverFactory.getDriver();
-        this.driver = PageFactory.driver;
+        this.driver = DriverFactory.getDriver();
+        //this.driver = PageFactory.driver;
     }
 
     public void sendKeys(By locator, String text){
